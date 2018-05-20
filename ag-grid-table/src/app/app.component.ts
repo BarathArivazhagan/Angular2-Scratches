@@ -50,17 +50,31 @@ export class AppComponent {
         const columnDefs = [
             {
                 headerName: 'Department',
-                field: 'department'
+                field: 'department',
+                cellRenderer: this.inputCellRendererTask,
+                cellClicked : this.invokeCellClick
             },
             {
               headerName: 'SUB_Department',
               field: 'sub_department',
               hide : true
+
             }
 
         ];
 
         return columnDefs;
     }
+
+    private inputCellRendererTask(params: any) {
+
+            return '<input type="checkbox" style="width: 50%;" value=""/>' + params.value;
+  }
+  
+  private invokeCellClick(params: any){
+     console.log(params);
+    return RefData.subDepartments;
+  }
+
 }
 
